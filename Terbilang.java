@@ -1,76 +1,37 @@
-package com.syukron.jasper;
-import net.sf.jasperreports.engine.JRDefaultScriptlet;
-import net.sf.jasperreports.engine.JRScriptletException;
-
-public class Terbilang extends JRDefaultScriptlet
+public class Terbilang
 {
-	private static long angka;
-	private String[] bilangan = {"", "satu", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sebelas"};
-	
-	public Terbilang()
+	private static String[] bilangan = {"", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sebelas"};
+
+	private static String getKata(long bilangan)
 	{
-		this.setAngka(0);
+		return Terbilang.bilangan[(int) bilangan];
 	}
 	
-	public Terbilang(long angka)
+	public static String getTerbilang(long x)
 	{
-		this.angka = angka;
-	}
-	
-	private long cekAngka(long angka)
-	{
-		if (angka >= 0) {
-			return angka;
-		} else {
-			return 0;
-		}
-	}
-	
-	private String getKata(long bilangan)
-	{
-		return this.bilangan[(int) bilangan];
-	}
-	
-	public void setAngka(long angka)
-	{
-		this.angka = angka;
-	}
-	
-	public long getAngka()
-	{
-		return this.angka;
-	}
-	
-	public String getTerbilang(long angka)
-	{
-		long x = this.cekAngka(angka);
+        x = Math.abs(x);
 		String retVal = "";
 		
 		if (x < 12) {
-			retVal += this.getKata(x);
+			retVal += " " + Terbilang.getKata(x);
 		} else if (x < 20) {
-			retVal += this.getTerbilang(x - 10) + " belas";
+			retVal += Terbilang.getTerbilang(x - 10) + " belas";
 		} else if (x < 100) {
-			retVal += this.getTerbilang(x / 10) + " puluh" + this.getTerbilang(x % 10);
+			retVal += Terbilang.getTerbilang(x / 10) + " puluh" + Terbilang.getTerbilang(x % 10);
 		} else if (x < 200) {
-			retVal += " seratus" + this.getTerbilang(x - 100);
+			retVal += " seratus" + Terbilang.getTerbilang(x - 100);
 		} else if (x < 1000) {
-			retVal += this.getTerbilang(x / 100) + " ratus" + this.getTerbilang(x % 100);
+			retVal += Terbilang.getTerbilang(x / 100) + " ratus" + Terbilang.getTerbilang(x % 100);
 		} else if (x < 2000) {
-			retVal += " seribu" + this.getTerbilang(x - 1000);
+			retVal += " seribu" + Terbilang.getTerbilang(x - 1000);
 		} else if (x < 1000000) {
-			retVal += this.getTerbilang(x / 1000) + " ribu" + this.getTerbilang(x % 1000);
+			retVal += Terbilang.getTerbilang(x / 1000) + " ribu" + Terbilang.getTerbilang(x % 1000);
 		} else if (x < 1000000000) {
-			retVal += this.getTerbilang(x / 1000000) + " juta" + this.getTerbilang(x % 1000000);
+			retVal += Terbilang.getTerbilang(x / 1000000) + " juta" + Terbilang.getTerbilang(x % 1000000);
 		} else if (x < 1000000000000L) {
-			retVal += this.getTerbilang(x / 1000000000) + " milyar" + this.getTerbilang(x % 1000000000);
+			retVal += Terbilang.getTerbilang(x / 1000000000) + " milyar" + Terbilang.getTerbilang(x % 1000000000);
 		}
 		
 		return retVal;
-	}
-	
-	public String toString()
-	{
-		return this.getTerbilang(this.getAngka());
 	}
 }
