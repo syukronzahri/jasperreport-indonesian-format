@@ -7,7 +7,7 @@ import java.text.DecimalFormatSymbols;
 
 public class IndonesianFormat extends JRDefaultScriptlet
 {
-    private String[] bilangan = {"", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sebelas"};
+    private String[] bilangan = {"", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"};
 
     private String getKata(long bilangan)
     {
